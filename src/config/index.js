@@ -30,7 +30,7 @@ const config = convict({
   serviceName: {
     doc: 'Applications Service Name',
     format: String,
-    default: 'CDP Node.js Frontend Template'
+    default: 'nms-frontend-alpha'
   },
   root: {
     doc: 'Project root',
