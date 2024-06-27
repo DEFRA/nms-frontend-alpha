@@ -1,7 +1,7 @@
 import { config } from '~/src/config/index.js'
 import { routePaths } from '../../../common/helpers/constants.js'
 import { fields } from '../fields.js'
-import { proxyFetch } from '~/src/server/common/helpers/proxy-fetch.js'
+import { httpFetcher } from '~/src/server/common/helpers/http-fetch/http-fetch.js'
 
 const nmsConfig = config.get('nms')
 const apiPath = nmsConfig.apiPath
@@ -13,10 +13,7 @@ const postController = {
     const payload = { ...data, entity: 'organization', status: 'incomplete' }
     const options = {
       method: 'PUT',
-      body: JSON.stringify(payload),
-      headers: {
-        'Content-Type': 'application/json'
-      }
+      body: JSON.stringify(payload)
     }
     const { organization, upload } = routePaths
     const routeContext = {
@@ -28,11 +25,11 @@ const postController = {
     }
 
     try {
-      const response = await proxyFetch(
+      const response = await httpFetcher(
         `${apiPath}update/submission/${id}`,
         options
       )
-      const { message, document } = await response.json()
+      const { message, document } = await response.json
       if (message === 'success') {
         const route = action === 'sac' ? upload : organization
         return h.redirect(`${route}/${document._id}`)
