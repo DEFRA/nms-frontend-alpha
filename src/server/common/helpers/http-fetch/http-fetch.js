@@ -1,10 +1,9 @@
 import { createLogger } from '../logging/logger.js'
-import { proxyFetch } from '../proxy-fetch.js'
 import { throwHttpError } from './throw-http-error.js'
 
 const httpFetcher = async (url, options = {}) => {
   const logger = createLogger()
-  const response = await proxyFetch(url, {
+  const response = await fetch(url, {
     ...options,
     method: options?.method || 'get',
     headers: {
