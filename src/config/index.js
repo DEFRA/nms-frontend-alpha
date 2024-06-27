@@ -83,7 +83,7 @@ const config = convict({
       name: {
         doc: 'server side session cache name',
         format: String,
-        default: 'session',
+        default: 'nmsFrontendSession',
         env: 'SESSION_CACHE_NAME'
       },
       ttl: {
@@ -103,7 +103,7 @@ const config = convict({
       password: {
         doc: 'session cookie password',
         format: String,
-        default: 'the-password-must-be-at-least-32-characters-long',
+        default: 'GApeeVRxTf$unUEAjAue*%RFqtuDhBdM',
         env: 'SESSION_COOKIE_PASSWORD',
         sensitive: true
       }
@@ -113,13 +113,13 @@ const config = convict({
     enabled: {
       doc: 'Enable Redis on your Frontend. Before you enable Redis, contact the CDP platform team as we need to set up config so you can run Redis in CDP environments',
       format: Boolean,
-      default: false,
+      default: true,
       env: 'REDIS_ENABLED'
     },
     host: {
       doc: 'Redis cache host',
       format: String,
-      default: '127.0.0.1',
+      default: '192.168.125.138',
       env: 'REDIS_HOST'
     },
     username: {
@@ -138,7 +138,7 @@ const config = convict({
     keyPrefix: {
       doc: 'Redis cache key prefix name used to isolate the cached results across multiple clients',
       format: String,
-      default: 'cdp-example-node-frontend:',
+      default: 'nms:',
       env: 'REDIS_KEY_PREFIX'
     },
     useSingleInstanceCache: {
@@ -147,6 +147,26 @@ const config = convict({
       default: process.env.NODE_ENV !== 'production',
       env: 'USE_SINGLE_INSTANCE_CACHE'
     }
+  },
+  nms: {
+    apiPath: {
+      doc: 'NMS Backend REST API path',
+      format: String,
+      default: 'http://localhost:3001/',
+      env: 'NMS_BE_API'
+    }
+  },
+  bucket: {
+    doc: 'Bucket name',
+    format: String,
+    default: 'nms-local-frontend',
+    env: 'BUCKET'
+  },
+  cdpUploaderUrl: {
+    doc: 'CDP Uploader root url',
+    format: String,
+    default: 'http://localhost:7337',
+    env: 'CDP_UPLOADER_URL'
   }
 })
 

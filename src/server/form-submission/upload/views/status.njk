@@ -1,0 +1,15 @@
+{% extends 'layouts/page.njk' %}
+
+{% block content %}
+  {{ appHeading({
+    text: heading,
+    caption: "Upload in progress"
+  }) }}
+
+  {% call appPageBody() %}
+  <p>
+    Your files are currently being checked for viruses before uploading {{ appLoader({ classes: "app-loader--is-loading" }) }}
+  </p>
+  {% endcall %}
+
+{% endblock %}
