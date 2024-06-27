@@ -1,7 +1,7 @@
 import { config } from '~/src/config/index.js'
 import { routePaths } from '../../../common/helpers/constants.js'
 import { fields } from '../fields.js'
-import { proxyFetch } from '~/src/server/common/helpers/proxy-fetch.js'
+import { httpFetcher } from '~/src/server/common/helpers/http-fetch/http-fetch.js'
 
 const nmsConfig = config.get('nms')
 const apiPath = nmsConfig.apiPath
@@ -10,18 +10,9 @@ const indexController = {
   handler: async (request, h) => {
     const { id } = request.params
     let values = {}
-    const options = {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }
     if (id) {
-      const response = await proxyFetch(
-        `${apiPath}read/submission/${id}`,
-        options
-      )
-      const { message, document } = await response.json()
+      const response = await httpFetcher(`${apiPath}read/submission/${id}`)
+      const { message, document } = await response.json
       if (message !== 'success' || document._id !== id) {
         return h.redirect(routePaths.contact)
       } else {

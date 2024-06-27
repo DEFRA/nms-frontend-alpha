@@ -10,17 +10,8 @@ const indexController = {
   handler: async (request, h) => {
     const { id } = request.params
     let values = {}
-    const options = {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }
     if (id) {
-      const response = await proxyFetch(
-        `${apiPath}read/submission/${id}`,
-        options
-      )
+      const response = await proxyFetch(`${apiPath}read/submission/${id}`)
       const { message, document } = await response.json()
       if (message === 'success') {
         values = document
