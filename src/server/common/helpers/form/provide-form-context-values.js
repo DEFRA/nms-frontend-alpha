@@ -1,11 +1,8 @@
-import pickBy from 'lodash/pickBy'
-
 function provideFormContextValues() {
   return async (request, h) => {
     const response = request.response
 
     if (response.variety === 'view') {
-      // Pull session from Redis directly using creatureId
       const sessionValue =
         request.params?.creatureId &&
         (await request.redis.getData(request.params.creatureId))
@@ -29,10 +26,16 @@ function provideFormContextValues() {
       // 2 - if sessionValue exists, values from sessionValue
       // 3 - formValues from h.view() context          - (The lowest priority)
 
+      const filterFalsyValues = (obj) => {
+        return Object.fromEntries(
+          Object.entries(obj).filter(([key, value]) => Boolean(value))
+        )
+      }
+
       response.source.context.formValues = {
         ...(response.source.context?.formValues &&
           response.source.context.formValues),
-        ...(sessionValue?.fields && pickBy(sessionValue.fields)),
+        ...(sessionValue?.fields && filterFalsyValues(sessionValue.fields)),
         ...(validationFailure?.formValues && validationFailure.formValues)
       }
 
