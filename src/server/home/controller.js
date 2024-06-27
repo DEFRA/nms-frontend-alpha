@@ -1,4 +1,5 @@
-import { routePaths } from '../common/helpers/constants.js'
+import { config } from '~/src/config/index.js'
+// import { routePaths } from '../common/helpers/constants.js'
 
 /**
  * A GDS styled example home page controller.
@@ -6,11 +7,12 @@ import { routePaths } from '../common/helpers/constants.js'
  */
 const homeController = {
   handler: (request, h) => {
-    return h.view('home/index', {
-      pageTitle: 'Home',
-      heading: 'Home',
-      contactPath: routePaths.contact
-    })
+    return h.response({ ...config })
+    // return h.view('home/index', {
+    //   pageTitle: 'Home',
+    //   heading: 'Home',
+    //   contactPath: routePaths.contact
+    // })
   }
 }
 
