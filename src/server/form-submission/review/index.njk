@@ -1,0 +1,76 @@
+{% extends 'layouts/page.njk' %}
+{% from 'govuk/components/summary-list/macro.njk' import govukSummaryList %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block content %}
+  {{ appHeading({
+    text: heading,
+    caption: 'Review & Submit details'
+  }) }}
+
+  {% call appPageBody() %}
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: {
+          text: 'First Name'
+        },
+        value: {
+          text: data.firstName,
+          classes: 'govuk-!-text-align-right'
+        }
+      },
+      {
+        key: {
+          text: 'Last Name'
+        },
+        value: {
+          text: data.lastName,
+          classes: 'govuk-!-text-align-right'
+        }
+      },
+      {
+        key: {
+          text: 'E-Mail ID'
+        },
+        value: {
+          text: data.email,
+          classes: 'govuk-!-text-align-right'
+        }
+      },
+      {
+        key: {
+          text: 'Telephone'
+        },
+        value: {
+          text: data.phone,
+          classes: 'govuk-!-text-align-right'
+        }
+      },
+      {
+        key: {
+          text: 'Organization Name'
+        },
+        value: {
+          html: data.orgName,
+          classes: 'govuk-!-text-align-right'
+        }
+      },
+      {
+        key: {
+          text: 'Address'
+        },
+        value: {
+          html: data.address1+'<br>'+data.address2+'<br>'+data.address3+'<br>'+data.townRCity+'<br>'+data.postcode,
+          classes: 'govuk-!-text-align-right'
+        }
+      }
+    ]
+  }) }}
+
+  {{ govukButton({
+    text: "Submit"
+  }) }}
+  {% endcall %}
+
+{% endblock %}

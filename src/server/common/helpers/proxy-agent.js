@@ -5,6 +5,7 @@ import { config } from '~/src/config/index.js'
 
 const proxyAgent = () => {
   const proxy = config.get('httpsProxy') ?? config.get('httpProxy')
+
   if (!proxy) {
     return null
   } else {

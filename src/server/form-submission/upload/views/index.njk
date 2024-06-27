@@ -1,0 +1,40 @@
+{% extends 'layouts/page.njk' %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
+
+{% block content %}
+  {{ appHeading({
+    text: heading,
+    caption: "Upload a file"
+  }) }}
+
+  {% call appPageBody() %}
+  <form action="{{ action }}" method="post" enctype="multipart/form-data">
+    {{ govukFileUpload({
+      id: "file",
+      name: "file",
+      hint: {
+        text: "File types of .png, .gif, .jpeg or .pdf with a max size of 100 MB"
+      },
+      errorMessage: {
+        text: formErrors.file.message
+      } if formErrors.file.message
+    }) }}
+
+    <div class="govuk-button-group">
+      {{ govukButton({
+        text: "Review & Submit",
+        name: 'action',
+        value: 'sac'
+      }) }}
+
+      {{ govukButton({
+        text: "Skip & Review",
+        href: reviewUrl,
+        classes: "govuk-button--secondary"
+      }) }}
+    </div>
+  </form>
+  {% endcall %}
+
+{% endblock %}
