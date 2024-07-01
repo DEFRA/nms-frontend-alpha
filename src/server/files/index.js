@@ -1,4 +1,4 @@
-import { fileController } from '~/src/server/files/file-controller'
+import { fileController } from '~/src/server/files/file-controller.js'
 
 const files = {
   plugin: {

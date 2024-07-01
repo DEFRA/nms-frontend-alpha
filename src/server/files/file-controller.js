@@ -1,8 +1,8 @@
 import Joi from 'joi'
 import { GetObjectCommand } from '@aws-sdk/client-s3'
 
-import { config } from '~/src/config'
-import { s3Client } from '~/src/server/common/helpers/s3-client'
+import { config } from '~/src/config/index.js'
+import { s3Client } from '~/src/server/common/helpers/s3-client.js'
 
 /**
  * Provides access to files in the s3 bucket.
