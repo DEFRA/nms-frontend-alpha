@@ -69,7 +69,7 @@
   }) }}
 
   {%if data.file.fileUrl %}
-    <img class="app-img" src="/file/{{ data.file.fileUrl | urlencode }}" alt="{{ data.file.filename }} picture">
+    <img class="app-img govuk-!-margin-bottom-4" style="width: 500px; display: block;" src="/file/{{ data.file.fileUrl | urlencode }}" alt="{{ data.file.filename }} picture">
   {% endif %}
 
   {{ govukButton({
