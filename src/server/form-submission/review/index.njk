@@ -68,6 +68,10 @@
     ]
   }) }}
 
+  {%if data.file.fileUrl %}
+    <img class="app-img" src="/file/{{ data.file.fileUrl | urlencode }}" alt="{{ data.file.filename }} picture">
+  {% endif %}
+
   {{ govukButton({
     text: "Submit"
   }) }}

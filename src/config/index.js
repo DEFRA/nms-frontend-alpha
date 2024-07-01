@@ -113,7 +113,7 @@ const config = convict({
     enabled: {
       doc: 'Enable Redis on your Frontend. Before you enable Redis, contact the CDP platform team as we need to set up config so you can run Redis in CDP environments',
       format: Boolean,
-      default: false,
+      default: true,
       env: 'REDIS_ENABLED'
     },
     host: {
@@ -155,6 +155,17 @@ const config = convict({
       default: 'http://localhost:3001/',
       env: 'NMS_BE_API'
     }
+  },
+  awsRegion: {
+    doc: 'AWS region',
+    format: String,
+    default: 'eu-west-2',
+    env: 'AWS_REGION'
+  },
+  localstackEndpoint: {
+    doc: 'Localstack endpoint',
+    format: String,
+    default: 'http://localhost:4566'
   },
   bucket: {
     doc: 'Bucket name',
