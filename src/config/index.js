@@ -156,6 +156,17 @@ const config = convict({
       env: 'NMS_BE_API'
     }
   },
+  awsRegion: {
+    doc: 'AWS region',
+    format: String,
+    default: 'eu-west-2',
+    env: 'AWS_REGION'
+  },
+  localstackEndpoint: {
+    doc: 'Localstack endpoint',
+    format: String,
+    default: 'http://localhost:4566'
+  },
   bucket: {
     doc: 'Bucket name',
     format: String,

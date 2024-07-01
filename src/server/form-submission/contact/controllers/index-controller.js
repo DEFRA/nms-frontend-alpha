@@ -9,6 +9,7 @@ const apiPath = nmsConfig.apiPath
 const indexController = {
   handler: async (request, h) => {
     const { id } = request.params
+    request.yar.clear('submission')
     let values = {}
     if (id) {
       const response = await proxyFetch(`${apiPath}read/submission/${id}`)

@@ -4,6 +4,11 @@ import { sessionTransaction } from '~/src/server/common/helpers/session-transact
 import { routePaths } from '~/src/server/common/helpers/constants.js'
 import upload from '../schema.js'
 import { buildErrorDetails } from '~/src/server/common/helpers/build-error-details.js'
+import { httpFetcher } from '~/src/server/common/helpers/http-fetch/http-fetch.js'
+import { config } from '~/src/config/index.js'
+
+const nmsConfig = config.get('nms')
+const apiPath = nmsConfig.apiPath
 
 const statusController = {
   options: {
@@ -54,7 +59,30 @@ const statusController = {
         'Submission'
       )
 
-      return h.redirect(`${routePaths.review}/${id}`)
+      const options = {
+        method: 'PUT',
+        body: JSON.stringify({
+          file: {
+            filename: file.filename,
+            fileUrl: file.s3Key
+          }
+        })
+      }
+
+      try {
+        const response = await httpFetcher(
+          `${apiPath}update/submission/${id}`,
+          options
+        )
+        const { message } = await response.json
+        if (message === 'success') {
+          return h.redirect(`${routePaths.review}/${id}`)
+        } else {
+          return h.redirect(`${routePaths.upload}/${id}`)
+        }
+      } catch (error) {
+        return h.redirect(`${routePaths.upload}/${id}`)
+      }
     }
 
     return h.view('form-submission/upload/views/status', {

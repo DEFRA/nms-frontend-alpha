@@ -9,7 +9,8 @@ import {
   organization,
   review,
   upload
-} from './form-submission/index.js'
+} from '~/src/server/form-submission/index.js'
+import { files } from '~/src/server/files/index.js'
 
 const router = {
   plugin: {
@@ -24,6 +25,7 @@ const router = {
       await server.register([
         home,
         about,
+        files,
         contact,
         organization,
         upload,
