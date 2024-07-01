@@ -65,7 +65,9 @@ const statusController = {
           file: {
             filename: file.filename,
             fileUrl: file.s3Key
-          }
+          },
+          entity: 'upload',
+          status: 'incomplete'
         })
       }
 
