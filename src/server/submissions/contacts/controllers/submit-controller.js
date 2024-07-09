@@ -38,7 +38,8 @@ const submitController = {
       route,
       contacts,
       postHandler: cid ? `${route}/${cid}` : route,
-      orgPath: `${routePaths.organization}/${id}`
+      orgPath: `${routePaths.organization}/${id}`,
+      uploadPath: `${routePaths.upload}/${id}`
     }
     const validationResult = contact.validate(data, {
       abortEarly: false

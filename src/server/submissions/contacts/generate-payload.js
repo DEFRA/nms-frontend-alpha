@@ -8,8 +8,9 @@ const generatePayload = async (payloadData, data, cid) => {
     contacts.push({ ...data, cid })
   }
   return {
-    ...payload,
-    contacts
+    contacts,
+    entity: payload.entity,
+    status: payload.status
   }
 }
 
