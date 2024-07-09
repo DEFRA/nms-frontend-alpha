@@ -13,10 +13,11 @@ const initializeUpload = async (options = {}) => {
   } = options
 
   const endpointUrl = config.get('cdpUploaderUrl') + '/initiate'
-  const response = await fetchProxyWrapper(endpointUrl, {
-    method: 'POST',
-    body: JSON.stringify(
-      {
+  const response = await fetchProxyWrapper(
+    endpointUrl,
+    {
+      method: 'POST',
+      body: JSON.stringify({
         redirect,
         callback,
         s3Bucket,
@@ -24,10 +25,10 @@ const initializeUpload = async (options = {}) => {
         mimeTypes,
         maxFileSize,
         metadata
-      },
-      true
-    )
-  })
+      })
+    },
+    true
+  )
   return await response.body
 }
 
