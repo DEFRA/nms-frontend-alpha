@@ -82,6 +82,14 @@
         value: 'sam',
         classes: 'govuk-button--secondary'
       }) }}
+
+      {% if contacts.length > 0 %}
+        {{ govukButton({
+          href: uploadPath,
+          text: 'Continue',
+          classes: 'govuk-button--secondary'
+        }) }}
+      {% endif %}
     </div>
   </form>
   {% endcall %}

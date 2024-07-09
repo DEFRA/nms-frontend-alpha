@@ -35,7 +35,8 @@ const indexController = {
       route,
       contacts,
       postHandler: cid ? `${route}/${cid}` : route,
-      orgPath: `${routePaths.organization}/${id}`
+      orgPath: `${routePaths.organization}/${id}`,
+      uploadPath: `${routePaths.upload}/${id}`
     })
   }
 }
