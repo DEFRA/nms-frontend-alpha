@@ -1,0 +1,25 @@
+{% if params.contacts.length > 0 %}
+  <table class="govuk-table govuk-table--small-text-until-tablet">
+    <caption class="govuk-table__caption govuk-table__caption--m">Contacts</caption>
+    <thead class="govuk-table__head">
+      <tr class="govuk-table__row">
+        <th scope="col" class="govuk-table__header">Full Name</th>
+        <th scope="col" class="govuk-table__header">E-Mail</th>
+        <th scope="col" class="govuk-table__header">Phone</th>
+        <th scope="col" class="govuk-table__header">Actions</th>
+      </tr>
+    </thead>
+    <tbody class="govuk-table__body">
+      {% for contact in params.contacts %}
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">{{ contact.firstName+' '+contact.lastName }}</th>
+          <td class="govuk-table__cell">{{contact.email}}</td>
+          <td class="govuk-table__cell">{{contact.phone}}</td>
+          <td class="govuk-table__cell">
+            <a href="{{ params.editRoute + '/' + contact.cid }}" class="govuk-link">Edit</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endif %}

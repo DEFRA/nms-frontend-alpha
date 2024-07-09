@@ -1,0 +1,96 @@
+{% extends 'layouts/page.njk' %}
+{% from 'govuk/components/button/macro.njk' import govukButton %}
+{% from 'govuk/components/input/macro.njk' import govukInput %}
+{% from 'contact-list/macro.njk' import contactList %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+
+{% block content %}
+  {{ govukBackLink({
+    text: "Back",
+    href: orgPath
+  }) }}
+
+  {{ appHeading({
+    text: heading,
+    caption: 'Form to save the Contact information'
+  }) }}
+
+  {% call appPageBody() %}
+
+  {{error}}
+  <form method='post' action='{{postHandler}}'>
+    {{ govukInput({
+      label: {
+        text: 'Please enter your First Name'
+      },
+      classes: 'govuk-!-width-one-half',
+      id: 'firstName',
+      name: 'firstName',
+      value: formValues.firstName,
+      errorMessage: {
+        text: formErrors.firstName.message
+      } if formErrors.firstName.message
+    }) }}
+    {{ govukInput({
+      label: {
+        text: 'Please enter your Last Name'
+      },
+      classes: 'govuk-!-width-one-half',
+      id: 'lastName',
+      name: 'lastName',
+      value: formValues.lastName,
+      errorMessage: {
+        text: formErrors.lastName.message
+      } if formErrors.lastName.message
+    }) }}
+    {{ govukInput({
+      label: {
+        text: 'Please enter your E-Mail ID'
+      },
+      classes: 'govuk-!-width-one-half',
+      id: 'email',
+      name: 'email',
+      value: formValues.email,
+      errorMessage: {
+        text: formErrors.email.message
+      } if formErrors.email.message
+    }) }}
+    {{ govukInput({
+      label: {
+        text: 'Please enter your Telephone number'
+      },
+      classes: 'govuk-!-width-one-half',
+      id: 'phone',
+      name: 'phone',
+      inputmode: 'numeric',
+      value: formValues.phone,
+      errorMessage: {
+        text: formErrors.phone.message
+      } if formErrors.phone.message
+    }) }}
+
+    <div class='govuk-button-group'>
+      {{ govukButton({
+        text: 'Save and continue',
+        name: 'action',
+        value: 'sac'
+      }) }}
+
+      {{ govukButton({
+        text: 'Save and Add more',
+        name: 'action',
+        value: 'sam',
+        classes: 'govuk-button--secondary'
+      }) }}
+    </div>
+  </form>
+  {% endcall %}
+
+  {% if contacts.length > 0 %}
+    {{ contactList({
+      contacts: contacts,
+      editRoute: route
+    }) }}
+  {% endif %}
+
+{% endblock %}

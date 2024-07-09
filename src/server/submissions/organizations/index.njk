@@ -1,0 +1,348 @@
+{% extends 'layouts/page.njk' %}
+{% from 'govuk/components/button/macro.njk' import govukButton %}
+{% from 'govuk/components/input/macro.njk' import govukInput %}
+{% from 'govuk/components/select/macro.njk' import govukSelect %}
+{% from 'govuk/components/fieldset/macro.njk' import govukFieldset %}
+
+{% block content %}
+  {{ appHeading({
+    text: heading,
+    caption: 'Form to save the Contact information'
+  }) }}
+
+  {% call appPageBody() %}
+
+  {{error}}
+  <form method='post' action='{{postHandler}}'>
+    {{ govukInput({
+      label: {
+        text: 'Organisation or individual name'
+      },
+      classes: 'govuk-!-width-one-half',
+      id: 'orgName',
+      name: 'orgName',
+      value: formValues.orgName,
+      errorMessage: {
+        text: formErrors.orgName.message
+      } if formErrors.orgName.message
+    }) }}
+
+    {{ govukSelect({
+      id: 'orgType',
+      name: 'orgType',
+      label: {
+        text: 'Type of organisation'
+      },
+      items: orgTypeOptions,
+      classes: 'govuk-!-width-one-half',
+      formGroup: {
+        attributes: {
+          'data-js': 'app-reveal',
+          'data-reveals': 'typeOfDev-block,address-block,mitigationProviderSBI-block'
+        }
+      },
+      errorMessage: {
+        text: formErrors.orgType.message
+      } if formErrors.orgType.message
+    }) }}
+
+    <div id='typeOfDev-block'>
+      {{ govukSelect({
+        id: 'typeOfDeveloper',
+        name: 'typeOfDeveloper',
+        label: {
+          text: 'Type of developer'
+        },
+        classes: 'govuk-!-width-one-half',
+        formGroup: {
+          classes: 'js-hidden',
+          attributes: {
+            'data-options': '930750007',
+            'data-js': 'app-reveal',
+            'data-reveals': 'crn-block,nationality-block,reg-address',
+            'data-refresh': 'true'
+          }
+        },
+        items: devTypeOptions,
+        errorMessage: {
+          text: formErrors.typeOfDeveloper.message
+        } if formErrors.typeOfDeveloper.message
+      }) }}
+    </div>
+
+    <div id='crn-block'>
+      {{ govukInput({
+        label: {
+          text: 'Company Registration Number (CRN)'
+        },
+        classes: 'govuk-!-width-one-half',
+        id: 'crn',
+        name: 'crn',
+        value: formValues.crn,
+        formGroup: {
+          classes: 'js-hidden',
+          attributes: {
+            'data-options': '930750000'
+          }
+        },
+        errorMessage: {
+          text: formErrors.crn.message
+        } if formErrors.crn.message
+      }) }}
+    </div>
+
+    <div id='mitigationProviderSBI-block'>
+      {{ govukInput({
+        label: {
+          text: 'Mitigation Provide SBI'
+        },
+        classes: 'govuk-!-width-one-half',
+        id: 'mitigationProviderSBI',
+        name: 'mitigationProviderSBI',
+        value: formValues.mitigationProviderSBI,
+        formGroup: {
+          classes: 'js-hidden',
+          attributes: {
+            'data-options': '930750001'
+          }
+        },
+        errorMessage: {
+          text: formErrors.mitigationProviderSBI.message
+        } if formErrors.mitigationProviderSBI.message
+      }) }}
+    </div>
+
+    <div id='nationality-block' class='js-hidden'>
+      {{ govukSelect({
+        id: 'nationality',
+        name: 'nationality',
+        label: {
+          text: 'Nationality'
+        },
+        classes: 'govuk-!-width-one-half',
+        items: countryOptions,
+        formGroup: {
+          classes: 'js-hidden',
+          attributes: {
+            'data-options': '930750001'
+          }
+        },
+        errorMessage: {
+          text: formErrors.nationality.message
+        } if formErrors.nationality.message
+      }) }}
+    </div>
+
+    <div id='address-block' class='js-hidden'>
+      {% call govukFieldset({
+        legend: {
+          text: 'Address',
+          classes: 'govuk-fieldset__legend--l',
+          isPageHeading: true
+        }
+      }) %}
+      {{ govukInput({
+        label: {
+          text: 'Address 1'
+        },
+        classes: 'govuk-!-width-one-half',
+        id: 'address1',
+        name: 'address1',
+        value: formValues.address1,
+        formGroup: {
+          classes: 'js-hidden',
+          attributes: {
+            'data-options': '930750003,930750001'
+          }
+        },
+        errorMessage: {
+          text: formErrors.address1.message
+        } if formErrors.address1.message
+      }) }}
+      {{ govukInput({
+        label: {
+          text: 'Address 2'
+        },
+        classes: 'govuk-!-width-one-half',
+        id: 'address2',
+        name: 'address2',
+        value: formValues.address2,
+        formGroup: {
+          classes: 'js-hidden',
+          attributes: {
+            'data-options': '930750003,930750001'
+          }
+        },
+        errorMessage: {
+          text: formErrors.address2.message
+        } if formErrors.address2.message
+      }) }}
+      {{ govukInput({
+        label: {
+          text: 'Address 3'
+        },
+        classes: 'govuk-!-width-one-half',
+        id: 'address3',
+        name: 'address3',
+        value: formValues.address3,
+        formGroup: {
+          classes: 'js-hidden',
+          attributes: {
+            'data-options': '930750003,930750001'
+          }
+        },
+        errorMessage: {
+          text: formErrors.address3.message
+        } if formErrors.address3.message
+      }) }}
+      {{ govukInput({
+        label: {
+          text: 'Town or City'
+        },
+        classes: 'govuk-!-width-one-half',
+        id: 'townRCity',
+        name: 'townRCity',
+        value: formValues.townRCity,
+        formGroup: {
+          classes: 'js-hidden',
+          attributes: {
+            'data-options': '930750003,930750001'
+          }
+        },
+        errorMessage: {
+          text: formErrors.townRCity.message
+        } if formErrors.townRCity.message
+      }) }}
+      {{ govukInput({
+        label: {
+          text: 'Postcode'
+        },
+        classes: 'govuk-!-width-one-half',
+        id: 'postcode',
+        name: 'postcode',
+        autocomplete: 'postal-code',
+        value: formValues.postcode,
+        formGroup: {
+          classes: 'js-hidden',
+          attributes: {
+            'data-options': '930750003,930750001'
+          }
+        },
+        errorMessage: {
+          text: formErrors.postcode.message
+        } if formErrors.postcode.message
+      }) }}
+      {% endcall %}
+    </div>
+
+    <div id='reg-address' class='js-hidden'>
+      {% call govukFieldset({
+        legend: {
+          text: 'Registered address',
+          classes: 'govuk-fieldset__legend--l',
+          isPageHeading: true
+        }
+      }) %}
+      {{ govukInput({
+        label: {
+          text: 'Address 1'
+        },
+        classes: 'govuk-!-width-one-half',
+        id: 'regAddress1',
+        name: 'regAddress1',
+        value: formValues.regAddress1,
+        formGroup: {
+          classes: 'js-hidden',
+          attributes: {
+            'data-options': '930750000,930750001,930750002'
+          }
+        },
+        errorMessage: {
+          text: formErrors.regAddress1.message
+        } if formErrors.regAddress1.message
+      }) }}
+      {{ govukInput({
+        label: {
+          text: 'Address 2'
+        },
+        classes: 'govuk-!-width-one-half',
+        id: 'regAddress2',
+        name: 'regAddress2',
+        value: formValues.regAddress2,
+        formGroup: {
+          classes: 'js-hidden',
+          attributes: {
+            'data-options': '930750000,930750001,930750002'
+          }
+        },
+        errorMessage: {
+          text: formErrors.regAddress2.message
+        } if formErrors.regAddress2.message
+      }) }}
+      {{ govukInput({
+        label: {
+          text: 'Address 3'
+        },
+        classes: 'govuk-!-width-one-half',
+        id: 'regAddress3',
+        name: 'regAddress3',
+        value: formValues.regAddress3,
+        formGroup: {
+          classes: 'js-hidden',
+          attributes: {
+            'data-options': '930750000,930750001,930750002'
+          }
+        },
+        errorMessage: {
+          text: formErrors.regAddress3.message
+        } if formErrors.regAddress3.message
+      }) }}
+      {{ govukInput({
+        label: {
+          text: 'Town or City'
+        },
+        classes: 'govuk-!-width-one-half',
+        id: 'regTownRCity',
+        name: 'regTownRCity',
+        value: formValues.regTownRCity,
+        formGroup: {
+          classes: 'js-hidden',
+          attributes: {
+            'data-options': '930750000,930750001,930750002'
+          }
+        },
+        errorMessage: {
+          text: formErrors.regTownRCity.message
+        } if formErrors.regTownRCity.message
+      }) }}
+      {{ govukInput({
+        label: {
+          text: 'Postcode'
+        },
+        classes: 'govuk-!-width-one-half',
+        id: 'regPostcode',
+        name: 'regPostcode',
+        autocomplete: 'postal-code',
+        value: formValues.regPostcode,
+        formGroup: {
+          classes: 'js-hidden',
+          attributes: {
+            'data-options': '930750000,930750001,930750002'
+          }
+        },
+        errorMessage: {
+          text: formErrors.regPostcode.message
+        } if formErrors.regPostcode.message
+      }) }}
+      {% endcall %}
+    </div>
+
+    <div class='govuk-button-group'>
+      {{ govukButton({
+        text: 'Save and continue'
+      }) }}
+    </div>
+  </form>
+  {% endcall %}
+
+{% endblock %}

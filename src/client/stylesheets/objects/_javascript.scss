@@ -1,0 +1,17 @@
+.js-visible {
+  display: none;
+}
+
+.js-hidden {
+  display: block;
+}
+
+.js-enabled {
+  .js-visible {
+    display: block;
+  }
+
+  .js-hidden {
+    display: none;
+  }
+}

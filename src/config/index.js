@@ -152,7 +152,7 @@ const config = convict({
     apiPath: {
       doc: 'NMS Backend REST API path',
       format: String,
-      default: 'http://localhost:3001/',
+      default: 'http://localhost:3001/', // 'https://nms-backend-alpha.dev.cdp-int.defra.cloud/'
       env: 'NMS_BE_API'
     }
   },

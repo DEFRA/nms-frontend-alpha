@@ -1,0 +1,112 @@
+{% extends 'layouts/page.njk' %}
+{% from 'govuk/components/summary-list/macro.njk' import govukSummaryList %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from 'contact-list/macro.njk' import contactList %}
+
+{% block content %}
+  {{ appHeading({
+    text: heading,
+    caption: 'Review details'
+  }) }}
+
+  {{ govukSummaryList({
+    card: {
+      title: {
+        text: "Organization Details"
+      },
+      actions: {
+        items: [
+          {
+            href: editRoute,
+            text: "Edit",
+            visuallyHiddenText: "organization"
+          }
+        ]
+      }
+    },
+    rows: [
+      {
+        key: {
+          text: "Organization Name"
+        },
+        value: {
+          html: data.orgName
+        }
+      },
+      {
+        key: {
+          text: "Type of Organization"
+        },
+        value: {
+          html: typeOfOrgLabel
+        }
+      },
+      {
+        key: {
+          text: "Type of Developer"
+        },
+        value: {
+          html: typeOfDevLabel
+        }
+      },
+      {
+        key: {
+          text: "Company Registration Number (CRN)"
+        },
+        value: {
+          html: data.crn
+        }
+      },
+      {
+        key: {
+          text: "Mitigation provider SBI"
+        },
+        value: {
+          html: data.mitigationProviderSBI
+        }
+      },
+      {
+        key: {
+          text: "Nationality"
+        },
+        value: {
+          html: nationalityLabel
+        }
+      },
+      {
+        key: {
+          text: "Address"
+        },
+        value: {
+          html: data.address1+'<br>'+data.address2+'<br>'+data.address3+'<br>'+data.townRCity+'<br>'+data.postcode
+        }
+      },
+      {
+        key: {
+          text: "Registration Address"
+        },
+        value: {
+          html: data.regAddress1+'<br>'+data.regAddress2+'<br>'+data.regAddress3+'<br>'+data.regTownRCity+'<br>'+data.regPostcode
+        }
+      }
+    ]
+  }) }}
+
+  {% if data.contacts.length > 0 %}
+    {{ contactList({
+      contacts: data.contacts,
+      editRoute: contactEditRoute
+    }) }}
+  {% endif %}
+
+  {%if data.file.fileUrl %}
+    <img class="app-img govuk-!-margin-bottom-4" style="width: 500px; display: block;" src="/file/{{ data.file.fileUrl | urlencode }}" alt="{{ data.file.filename }} picture">
+  {% endif %}
+
+  {{ govukButton({
+    href: "#",
+    text: "Close"
+  }) }}
+
+{% endblock %}

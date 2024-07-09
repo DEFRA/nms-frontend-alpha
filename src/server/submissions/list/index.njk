@@ -1,0 +1,43 @@
+{% extends 'layouts/page.njk' %}
+{% from 'govuk/components/button/macro.njk' import govukButton %}
+{% from 'govuk/components/input/macro.njk' import govukInput %}
+{% from 'govuk/components/select/macro.njk' import govukSelect %}
+{% from 'govuk/components/fieldset/macro.njk' import govukFieldset %}
+
+{% block content %}
+  {{ appHeading({
+    text: heading,
+    caption: 'List of organizations'
+  }) }}
+
+  {{error}}
+
+  {% if updatedDocuments.length > 0 %}
+    <table class="govuk-table govuk-table--small-text-until-tablet">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Org Name</th>
+          <th scope="col" class="govuk-table__header">Type of Organization</th>
+          <th scope="col" class="govuk-table__header">Type of Developer</th>
+          <th scope="col" class="govuk-table__header">Actions</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        {% for document in updatedDocuments %}
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">{{ document.orgName }}</th>
+            <td class="govuk-table__cell">{{document.typeOfOrgLabel}}</td>
+            <td class="govuk-table__cell">{{document.typeOfDevLabel}}</td>
+            <td class="govuk-table__cell">
+              <a href="{{ editRoute + '/' + document._id }}" class="govuk-link">Edit</a>&nbsp;
+              <a href="{{ reviewRoute + '/' + document._id }}" class="govuk-link">View</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p class="govuk-body">No records found!</p>
+  {% endif %}
+
+{% endblock %}

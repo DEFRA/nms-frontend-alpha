@@ -9,7 +9,7 @@ const homeController = {
     return h.view('home/index', {
       pageTitle: 'Home',
       heading: 'Home',
-      contactPath: routePaths.contact
+      contactPath: routePaths.organization
     })
   }
 }

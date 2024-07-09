@@ -1,7 +1,22 @@
 export const routePaths = {
+  home: '/',
+  about: '/about',
   contact: '/contact',
   organization: '/organization',
   upload: '/upload',
   uploadComplete: '/upload-complete',
-  review: '/review'
+  review: '/review',
+  submission: '/submission'
+}
+
+export const errorMessages = {
+  required: 'Enter a value',
+  choose: 'Choose an entry',
+  max: 'Enter no more that {#limit} characters'
+}
+
+export const redisKeys = {
+  countries: 'countries',
+  developerType: 'developerType',
+  orgType: 'orgType'
 }
