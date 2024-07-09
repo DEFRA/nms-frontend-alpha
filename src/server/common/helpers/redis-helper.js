@@ -6,18 +6,25 @@ class RedisHelper {
 
   async storeData(id, data) {
     const storedData = await this.getData(id)
+    let newData
+    if (Array.isArray(data)) {
+      newData = data
+    }
 
-    await this.client.set(
-      id,
-      JSON.stringify({
-        ...(storedData && storedData),
-        ...data
-      })
-    )
+    if (
+      typeof data === 'object' &&
+      typeof storedData === 'object' &&
+      !Array.isArray(data) &&
+      !Array.isArray(storedData)
+    ) {
+      newData = { ...storedData, ...data }
+    }
+
+    await this.client.set(id, JSON.stringify(newData))
 
     this.server.logger.debug(
       {
-        ...(storedData && storedData),
+        ...storedData,
         ...data
       },
       'Redis store data'

@@ -1,14 +1,21 @@
+import { routePaths } from '~/src/server/common/helpers/constants.js'
+
 function buildNavigation(request) {
   return [
     {
       text: 'Home',
-      url: '/',
-      isActive: request.path === '/'
+      url: routePaths.home,
+      isActive: request.path === routePaths.home
     },
     {
       text: 'About',
-      url: '/about',
-      isActive: request.path === '/about'
+      url: routePaths.about,
+      isActive: request.path === routePaths.about
+    },
+    {
+      text: 'Submissions',
+      url: routePaths.submission,
+      isActive: request.path === routePaths.submission
     }
   ]
 }
