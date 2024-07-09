@@ -50,7 +50,7 @@ const fetchProxyWrapper = async (
         attempt++
         logger.info(`Retrying... (${attempt + 1}/${retries})`)
       } else {
-        logger.info(error)
+        logger.info(`fetchProxyWrapper error: ${error}`)
         throw error
       }
     }

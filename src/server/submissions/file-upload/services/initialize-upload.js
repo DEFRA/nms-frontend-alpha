@@ -28,7 +28,7 @@ const initializeUpload = async (options = {}) => {
       true
     )
   })
-  return await response.json
+  return await response.body
 }
 
 export { initializeUpload }
