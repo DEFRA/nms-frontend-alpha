@@ -42,6 +42,21 @@ class RedisHelper {
     return response
   }
 
+  async getAll() {
+    const keys = []
+    let cursor = '0'
+    do {
+      const [newCursor, results] = await this.client.scan(cursor)
+      cursor = newCursor
+      keys.push(results)
+    } while (cursor !== '0')
+    const response = keys ?? null
+
+    this.server.logger.debug({ data: response }, 'Redis get all')
+
+    return response
+  }
+
   async removeData(id) {
     await this.client.del(id)
 
