@@ -7,7 +7,7 @@ const provideUploadStatus = (sessionId) => {
       const session = request.yar.get(sessionId)
       if (session.statusUrl) {
         const response = await fetchProxyWrapper(session.statusUrl, {}, true)
-        return await response.json
+        return await response.body
       }
       throw Boom.badRequest('No status url found')
     },
