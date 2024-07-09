@@ -16,6 +16,11 @@ function buildNavigation(request) {
       text: 'Submissions',
       url: routePaths.submission,
       isActive: request.path === routePaths.submission
+    },
+    {
+      text: 'Redis',
+      url: routePaths.redis,
+      isActive: request.path === routePaths.redis
     }
   ]
 }

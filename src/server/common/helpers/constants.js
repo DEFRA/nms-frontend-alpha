@@ -6,7 +6,9 @@ export const routePaths = {
   upload: '/upload',
   uploadComplete: '/upload-complete',
   review: '/review',
-  submission: '/submission'
+  submission: '/submission',
+  redis: '/redis',
+  redisDelete: '/redis-delete'
 }
 
 export const errorMessages = {

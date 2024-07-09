@@ -23,6 +23,11 @@ describe('#buildNavigation', () => {
         isActive: false,
         text: 'Submissions',
         url: '/submission'
+      },
+      {
+        isActive: false,
+        text: 'Redis',
+        url: '/redis'
       }
     ])
   })
@@ -43,6 +48,11 @@ describe('#buildNavigation', () => {
         isActive: false,
         text: 'Submissions',
         url: '/submission'
+      },
+      {
+        isActive: false,
+        text: 'Redis',
+        url: '/redis'
       }
     ])
   })
