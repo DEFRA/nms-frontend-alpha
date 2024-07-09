@@ -25,9 +25,10 @@ const provideOptions = {
       let orgType = cachedOrgType ?? null
 
       const apiCalls = []
-      if (!countries) apiCalls.push(fetchProxyWrapper(countriesEndPoint))
-      if (!devType) apiCalls.push(fetchProxyWrapper(devTypeEndPoint))
-      if (!orgType) apiCalls.push(fetchProxyWrapper(orgTypeEndPoint))
+      if (!countries)
+        apiCalls.push(fetchProxyWrapper(countriesEndPoint, {}, true))
+      if (!devType) apiCalls.push(fetchProxyWrapper(devTypeEndPoint, {}, true))
+      if (!orgType) apiCalls.push(fetchProxyWrapper(orgTypeEndPoint, {}, true))
       if (apiCalls.length) {
         request.logger.info(`Fetching from DataVerse`)
         const responses = await Promise.all(apiCalls)
