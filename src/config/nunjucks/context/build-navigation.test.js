@@ -18,6 +18,11 @@ describe('#buildNavigation', () => {
         isActive: false,
         text: 'About',
         url: '/about'
+      },
+      {
+        isActive: false,
+        text: 'Submissions',
+        url: '/submission'
       }
     ])
   })
@@ -33,6 +38,11 @@ describe('#buildNavigation', () => {
         isActive: false,
         text: 'About',
         url: '/about'
+      },
+      {
+        isActive: false,
+        text: 'Submissions',
+        url: '/submission'
       }
     ])
   })
