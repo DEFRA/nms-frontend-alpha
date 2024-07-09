@@ -12,7 +12,7 @@ import {
   review,
   list
 } from './submissions/index.js'
-import { redis } from './redis/index.js'
+// import { redis } from './redis/index.js'
 
 const router = {
   plugin: {
@@ -30,7 +30,7 @@ const router = {
       await server.register([organizations, contacts, upload, review, list])
 
       // Redis routes
-      await server.register([redis])
+      // await server.register([redis])
 
       // Static assets
       await server.register([serveStaticFiles])
