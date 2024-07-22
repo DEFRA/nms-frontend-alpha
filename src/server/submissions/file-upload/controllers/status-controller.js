@@ -132,7 +132,7 @@ const statusController = {
     }
 
     // Render view indicating that the upload is still in progress
-    return h.view('submissions/file-upload/views/index', {
+    return h.view('submissions/file-upload/views/status', {
       pageTitle: 'Upload in progress',
       heading: 'Scanning your files'
     })
