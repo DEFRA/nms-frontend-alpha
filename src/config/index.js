@@ -184,7 +184,7 @@ const config = convict({
       doc: 'The DEFRA Customer client ID',
       format: String,
       required: true,
-      default: null,
+      default: '',
       env: 'DC_CLIENT_ID',
       sensitive: true
     },
@@ -192,14 +192,23 @@ const config = convict({
       doc: 'The DEFRA Customer service ID',
       format: String,
       required: true,
-      default: null,
+      default: '',
       env: 'DC_SERVICE_ID',
+      sensitive: true
+    },
+    dcClientSecret: {
+      doc: 'The DEFRA Customer client secret',
+      format: String,
+      required: true,
+      default: '',
+      env: 'DC_CLIENT_SECRET',
       sensitive: true
     },
     dcRedirectUrl: {
       doc: 'The DEFRA Customer redirect URL',
       format: String,
-      default: 'http://localhost:3000/auth-callback',
+      default:
+        'https://nms-frontend-alpha.dev.cdp-int.defra.cloud/auth-callback',
       env: 'DC_REDIRECT_URL'
     },
     dcTenantName: {
