@@ -30,7 +30,7 @@ const callbackController = {
           body: params,
           method: 'POST',
           headers: {
-            'Content-Type': 'application/x-www-form-urlencode'
+            'Content-Type': 'application/x-www-form-urlencoded'
           }
         },
         true
