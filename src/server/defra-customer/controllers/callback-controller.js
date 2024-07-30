@@ -3,13 +3,9 @@ import { fetchProxyWrapper } from '../../common/helpers/fetchProxyWrapper.js'
 
 const callbackController = {
   handler: async (request, h) => {
-    const { code, state } = request.payload
-    const storedState = request.yar.get('state')
+    const { code } = request.payload
     if (!code) {
       return h.response('Authorization code not found').code(400)
-    }
-    if (state !== storedState) {
-      return h.response('Unauthorize').code(403)
     }
     try {
       const defraCustomer = config.get('defraCustomer')
