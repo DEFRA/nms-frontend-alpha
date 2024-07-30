@@ -178,6 +178,42 @@ const config = convict({
     format: String,
     default: 'http://localhost:7337',
     env: 'CDP_UPLOADER_URL'
+  },
+  defraCustomer: {
+    dcClientId: {
+      doc: 'The DEFRA Customer client ID',
+      format: String,
+      required: true,
+      default: null,
+      env: 'DC_CLIENT_ID',
+      sensitive: true
+    },
+    dcServiceId: {
+      doc: 'The DEFRA Customer service ID',
+      format: String,
+      required: true,
+      default: null,
+      env: 'DC_SERVICE_ID',
+      sensitive: true
+    },
+    dcRedirectUrl: {
+      doc: 'The DEFRA Customer redirect URL',
+      format: String,
+      default: 'http://localhost:3000/auth-callback',
+      env: 'DC_REDIRECT_URL'
+    },
+    dcTenantName: {
+      doc: 'The DEFRA Customer tenant name',
+      format: String,
+      default: 'dcidmtest',
+      env: 'DC_TENANT_NAME'
+    },
+    dcPolicyName: {
+      doc: 'The DEFRA Customer policy name',
+      format: String,
+      default: 'b2c_1a_cui_cpdev_signupsignin',
+      env: 'DC_POLICY_NAME'
+    }
   }
 })
 
