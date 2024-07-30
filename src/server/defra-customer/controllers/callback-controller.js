@@ -34,10 +34,11 @@ const callbackController = {
           }
         }
       )
-      const { data } = await response.body
-      return h.response({ data })
+      const data = await response.body
+      return h.response(data)
     } catch (error) {
-      return h.response(error)
+      request.logger.error(JSON.stringify(error))
+      return h.response(error.message)
     }
   }
 }
