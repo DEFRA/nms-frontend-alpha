@@ -12,6 +12,7 @@ import {
   review,
   list
 } from './submissions/index.js'
+import { auth } from './defra-customer/index.js'
 // import { redis } from './redis/index.js'
 
 const router = {
@@ -28,6 +29,9 @@ const router = {
 
       // Application submission routes
       await server.register([organizations, contacts, upload, review, list])
+
+      // DEFRA Customer
+      await server.register([auth])
 
       // Redis routes
       // await server.register([redis])
