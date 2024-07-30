@@ -52,11 +52,19 @@
     <li>and lots more... 😎</li>
   </ul>
 
-  {{ govukButton({
-    text: "Start now",
-    href: contactPath,
-    isStartButton: true
-  }) }}
+  <div class="govuk-button-group">
+    {{ govukButton({
+      text: "Start now",
+      href: contactPath,
+      isStartButton: true
+    }) }}
+
+    {{ govukButton({
+      text: "Login now",
+      href: loginPath,
+      isStartButton: true
+    }) }}
+  </div>
   {% endcall %}
 
 {% endblock %}

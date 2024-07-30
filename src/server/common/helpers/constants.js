@@ -8,7 +8,9 @@ export const routePaths = {
   review: '/review',
   submission: '/submission',
   redis: '/redis',
-  redisDelete: '/redis-delete'
+  redisDelete: '/redis-delete',
+  authLogin: '/auth-login',
+  authCallback: '/auth-callback'
 }
 
 export const errorMessages = {

@@ -9,7 +9,8 @@ const homeController = {
     return h.view('home/index', {
       pageTitle: 'Home',
       heading: 'Home',
-      contactPath: routePaths.organization
+      contactPath: routePaths.organization,
+      loginPath: routePaths.authLogin
     })
   }
 }
