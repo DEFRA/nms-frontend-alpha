@@ -38,7 +38,8 @@ const fetchProxyWrapper = async (
           method: options?.method || 'get',
           headers: {
             ...(options?.headers ?? options?.headers),
-            'Content-Type': 'application/json'
+            'Content-Type':
+              options?.headers?.['Content-Type'] ?? 'application/json'
           }
         },
         skipProxy
