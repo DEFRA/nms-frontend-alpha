@@ -32,8 +32,7 @@ const callbackController = {
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
           }
-        },
-        true
+        }
       )
       const { data } = await response.body
       return h.response({ data })
