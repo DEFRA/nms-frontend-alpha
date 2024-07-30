@@ -31,7 +31,8 @@ const loginController = {
 
       return h.redirect(authorizationUrl)
     } catch (error) {
-      return h.response(error)
+      request.logger.error(JSON.stringify(error))
+      return h.response(error.message)
     }
   }
 }
